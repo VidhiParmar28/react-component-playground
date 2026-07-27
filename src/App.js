@@ -14,6 +14,11 @@ import ToggleVisibility from './ToggleVisibility';
 import Likebtn from './LikeButton';
 import Todolist from './TodoList';
 import Todoadd from './Todointeractive';
+import ColorSwitcher from './ColorSwitcher';
+import CharacterCounter from './CharacterCounter';
+import ShowPasswordToggle from './ShowPasswordToggle';
+import Progress from './MultiStepFormProgress';
+import ShoppingList from './ShoppingList';
 import productImg1 from './image1.jpg';
 import productImg2 from './image2.jpg';
 
@@ -51,7 +56,39 @@ function App(){
  const [todos, setTodos] = useState(startingTodos); 
  const [currentString, setCurrentString] = useState("");
 
-  return(
+// const Items =[
+//   {name:"Apples" , quantity:1}
+// ];
+
+// const [CurrentItem,SetCurrentItem] =useState(Items);
+
+const startingItems =[
+  {name:"Apples" , quantity:1}
+];
+
+const [items,setItems] =useState(startingItems);
+const [currentItem,setCurrentItem] = useState("");
+
+
+const increaseQuantity = (index)=>{
+  setItems(items.map((item,i)=>{
+    if(i===index){
+      return {...item, quantity:item.quantity+1};
+    }
+    return item;
+  }));
+}
+const decreaseQuantity = (index)=>{
+  setItems(items.map((item,i)=>{
+    if(i===index){
+      return {...item, quantity:item.quantity-1};
+    }
+    return item;
+  }));
+}
+
+
+  return( 
     <div className="App">
 
   
@@ -175,6 +212,63 @@ function App(){
 
 
 
+{/* Color Switcher  */}
+
+<ColorSwitcher/>
+
+
+{/* Character Counter  */}
+
+<CharacterCounter/>
+
+
+
+{/* Show Password Toggle  */}
+
+<ShowPasswordToggle/>
+
+
+{/* Multi Step Form Progress  */}
+<Progress/>
+
+
+{/* Shopping List */}
+
+
+
+
+
+<input type="text" value={currentItem} onChange={(event)=>setCurrentItem(event.target.value)} />
+<button onClick={()=>{
+  setItems([...items,{name:currentItem,quantity:1}]);
+setCurrentItem("");
+}}>ADD</button>
+
+<ul>
+{items.map((item,index)=>(
+  <ShoppingList key={index} 
+  name={item.name}
+ quantity={item.quantity} 
+  onIncrease={()=>increaseQuantity(index)}
+  onDecrease={()=>increaseQuantity(index)}
+  />
+))
+}
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   </div>
@@ -185,6 +279,8 @@ function App(){
 
 export default App;
 
- 
+
+
+
 
 

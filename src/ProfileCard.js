@@ -1,5 +1,5 @@
 function ProfileCard (props){
-    console.log(props);
+    // console.log(props);
     return(
         <div className="profile-card">
             <h2>{props.name}</h2>
