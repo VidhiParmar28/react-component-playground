@@ -1,24 +1,24 @@
 import './App.css';
 import { useState } from 'react';
 
-import ProfileCard from './ProfileCard';
-import Greeting from './Greeting';
-import ProductCard from './ProductCard';
-import Stars  from './RatingStar';
-import ProductButtons from './ProductButton';
-import Avatar from './AvatarList';
-import Badge from './Badge';
-import IconButton from './IconList';
-import Counter from './counter';
-import ToggleVisibility from './ToggleVisibility';
-import Likebtn from './LikeButton';
-import Todolist from './TodoList';
-import Todoadd from './Todointeractive';
-import ColorSwitcher from './ColorSwitcher';
-import CharacterCounter from './CharacterCounter';
-import ShowPasswordToggle from './ShowPasswordToggle';
-import Progress from './MultiStepFormProgress';
-import ShoppingList from './ShoppingList';
+import ProfileCard from './components/Level1-2/ProfileCard';
+import Greeting from './components/Level1-2/Greeting';
+import ProductCard from './components/Level1-2/ProductCard';
+import Stars  from './components/Level1-2/RatingStar';
+import ProductButtons from './components/Level1-2/ProductButton';
+import Avatar from './components/Level1-2/AvatarList';
+import Badge from './components/Level1-2/Badge';
+import IconButton from './components/Level1-2/IconList';
+import Counter from './components/Level3/counter';
+import ToggleVisibility from './components/Level3/ToggleVisibility';
+import Likebtn from './components/Level3/LikeButton';
+import Todolist from './components/Level5/TodoList';
+import Todoadd from './components/Level5/Todointeractive';
+import ColorSwitcher from './components/Level3/ColorSwitcher';
+import CharacterCounter from './components/Level3/CharacterCounter';
+import ShowPasswordToggle from './components/Level3/ShowPasswordToggle';
+import Progress from './components/Level3/MultiStepFormProgress';
+import ShoppingList from './components/Level5/ShoppingList';
 import productImg1 from './image1.jpg';
 import productImg2 from './image2.jpg';
 
@@ -78,6 +78,7 @@ const increaseQuantity = (index)=>{
     return item;
   }));
 }
+
 const decreaseQuantity = (index)=>{
   setItems(items.map((item,i)=>{
     if(i===index){
@@ -86,6 +87,13 @@ const decreaseQuantity = (index)=>{
     return item;
   }));
 }
+
+
+const deleteItem = (index) =>{
+  setItems(items.filter((item,i)=> i !== index
+  ));
+
+};
 
 
   return( 
@@ -250,7 +258,8 @@ setCurrentItem("");
   name={item.name}
  quantity={item.quantity} 
   onIncrease={()=>increaseQuantity(index)}
-  onDecrease={()=>increaseQuantity(index)}
+  onDecrease={()=>decreaseQuantity(index)}
+  onDelete ={()=>deleteItem(index)}
   />
 ))
 }
